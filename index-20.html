@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Embercrypt — Between Stars &amp; Embers</title>
+<meta name="description" content="Embercrypt — епічна піксельна dungeon RPG із небезпечними підземеллями, унікальною зброєю, босами та загадковими світами.">
+<meta name="theme-color" content="#090a20">
+<meta name="color-scheme" content="dark">
+<meta property="og:site_name" content="Embercrypt">
+<meta property="og:title" content="Embercrypt — Pixel Dungeon RPG">
+<meta property="og:description" content="Descend into the Embercrypt. Discover weapons, face mighty bosses, and explore a world of ember and shadow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--void:#09040a;--deep:#10050d;--panel:#190812;--panel2:#230b15;--bone:#fff0e8;--ember:#ff392f;--hot:#ff6047;--flare:#ff9a54;--wine:#8f102a;--dim:#57202c;--line:rgba(255,112,96,.23);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:78px;background:var(--void)}
+body{margin:0;min-height:100vh;overflow-x:hidden;background:#070817;color:var(--bone);font:400 17px/1.7 Figtree,system-ui,sans-serif;position:relative;isolation:isolate}
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+body::before{opacity:.48;background-image:radial-gradient(1px 1px at 7% 13%,#fff 99%,transparent),radial-gradient(2px 2px at 23% 72%,#ff8b7c 99%,transparent),radial-gradient(1px 1px at 42% 31%,#fff 99%,transparent),radial-gradient(1px 1px at 61% 82%,#ffb29b 99%,transparent),radial-gradient(2px 2px at 78% 24%,#ff493d 99%,transparent),radial-gradient(1px 1px at 91% 62%,#fff 99%,transparent),radial-gradient(1px 1px at 85% 91%,#ff8b7c 99%,transparent),radial-gradient(1px 1px at 15% 47%,#ff493d 99%,transparent);background-size:330px 290px;animation:starDrift 90s linear infinite}
+body::after{opacity:.24;background:radial-gradient(ellipse at 10% 35%,rgba(255,40,50,.22),transparent 32%),radial-gradient(ellipse at 90% 65%,rgba(135,12,50,.28),transparent 34%);filter:blur(28px)}
+@keyframes starDrift{from{background-position:0 0}to{background-position:330px 580px}}
+h1,h2,h3{font-family:'Pixelify Sans',monospace;line-height:1.12;margin:0;letter-spacing:.025em}
+h1{color:#fff5ef;text-shadow:0 0 10px rgba(255,69,55,.7),0 0 34px rgba(255,35,45,.42),4px 4px 0 #5b0c24}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--flare);outline-offset:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:5;background:rgba(12,4,10,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,83,73,.32);box-shadow:0 8px 35px rgba(0,0,0,.25)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:12px}
+nav b{font:700 23px 'Pixelify Sans',monospace;color:#fff0e8;text-shadow:0 0 15px rgba(255,60,48,.7)}
+.links a{margin-right:16px;text-decoration:none;font-weight:600;font-size:15px;color:#e9c9c8;transition:color .2s,text-shadow .2s}
+.links a:hover{color:#fff; text-shadow:0 0 12px var(--ember)}
+.lang{display:flex;gap:5px}.lang button{font:700 13px 'Pixelify Sans',monospace;background:#1b0912;color:var(--bone);border:1px solid #77303b;border-radius:7px;padding:7px 9px;cursor:pointer;transition:all .25s}
+.lang button[aria-pressed=true]{background:linear-gradient(135deg,#a80e2c,#ff463b 55%,#a80e2c);color:white;border-color:#ff8270;box-shadow:0 0 17px rgba(255,48,52,.35)}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(78px,12vw,142px) 0 96px;border-bottom:1px solid rgba(255,87,72,.45);background:radial-gradient(ellipse at 50% 115%,rgba(255,50,35,.24),transparent 45%),linear-gradient(180deg,rgba(18,5,13,.15),rgba(10,3,9,.9))}
+.hero::before{content:"";position:absolute;z-index:-1;width:min(76vw,660px);aspect-ratio:1;right:-8%;top:-43%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,148,92,.9) 0 1%,rgba(255,59,43,.45) 8%,rgba(128,8,43,.26) 29%,transparent 68%);filter:blur(2px);box-shadow:0 0 110px rgba(255,31,46,.16);animation:emberPulse 7s ease-in-out infinite alternate}
+.hero::after{content:"✦     ·       ✧        ·     ✦       ·        ✧";position:absolute;top:13%;left:5%;right:5%;color:rgba(255,171,155,.55);font-size:clamp(12px,2vw,22px);letter-spacing:clamp(8px,4vw,40px);white-space:nowrap;overflow:hidden;pointer-events:none}
+@keyframes emberPulse{from{transform:scale(.92);opacity:.65}to{transform:scale(1.08);opacity:1}}
+.hero h1{font-size:clamp(56px,12vw,118px);margin-bottom:22px;max-width:900px;overflow-wrap:anywhere;letter-spacing:.02em}
+.hero p{max-width:54ch;margin:0 0 30px;font-size:clamp(18px,2.4vw,22px);color:#f1d7d3}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.badge{padding:8px 14px;border:1px solid rgba(255,111,92,.72);border-radius:999px;background:rgba(71,10,27,.52);color:#ffc0ad;font:700 14px 'Pixelify Sans',monospace;box-shadow:inset 0 0 15px rgba(255,44,52,.07)}
+.btn{position:relative;isolation:isolate;display:inline-block;padding:14px 21px;font:700 17px 'Pixelify Sans',monospace;text-decoration:none;text-align:center;border:1px solid rgba(255,173,144,.85);border-radius:9px;background:linear-gradient(115deg,#8e0b2a,#ed2637,#ff6547,#c31335,#8e0b2a);background-size:260% 100%;color:#fff8f2;box-shadow:0 0 0 1px rgba(255,53,57,.18),0 8px 26px rgba(199,17,49,.23),inset 0 1px 0 rgba(255,255,255,.2);cursor:pointer;transition:background-position .55s ease,transform .25s,box-shadow .25s;animation:buttonFlow 8s ease-in-out infinite}
+.btn:hover{background-position:100% 0;transform:translateY(-3px);box-shadow:0 0 26px rgba(255,52,57,.43),0 12px 30px rgba(120,5,30,.3),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn:active{transform:translateY(0)}
+@keyframes buttonFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+section{position:relative;padding:clamp(54px,8vw,88px) 0}
+section h2{font-size:clamp(32px,6vw,48px);margin-bottom:14px;color:#fff0e8;text-shadow:0 0 20px rgba(255,45,57,.18)}
+.sub{margin:0 0 30px;opacity:.86;max-width:65ch;color:#d9bfc3}
+.alt{background:linear-gradient(180deg,rgba(26,6,17,.91),rgba(14,4,12,.96));border-top:1px solid rgba(255,71,67,.14);border-bottom:1px solid rgba(255,71,67,.14)}
+.video{position:relative;aspect-ratio:16/9;border:1px solid rgba(255,106,91,.7);border-radius:14px;overflow:hidden;box-shadow:0 0 0 5px rgba(255,44,52,.035),0 18px 55px rgba(0,0,0,.45),0 0 34px rgba(255,30,52,.1);background:#050307}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.segs{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin:8px 0 12px}
+.segs i{height:14px;background:#28101a;border:1px solid #54202c;border-radius:3px}
+.segs i.on{background:linear-gradient(90deg,#9e102c,#ff5a43);border-color:#ff8975;box-shadow:0 0 12px rgba(255,48,54,.3)}
+.count{font:700 26px 'Pixelify Sans',monospace;margin-bottom:24px;color:#ffb5a1}
+.vp{height:min(78vh,680px);overflow:auto;border:1px solid rgba(255,103,91,.35);border-radius:14px;background:linear-gradient(180deg,rgba(21,6,15,.95),rgba(11,4,10,.97));overscroll-behavior:contain;box-shadow:inset 0 0 45px rgba(255,35,49,.035)}
+.tree{position:relative;display:flex;flex-direction:column-reverse;padding:40px 0;gap:26px}
+.trunk,.fill{position:absolute;bottom:0;width:4px;left:50%;margin-left:-2px;border-radius:5px}
+.trunk{top:0;background:#37131f}.fill{background:linear-gradient(180deg,#ff9c62,#ff302f);box-shadow:0 0 16px rgba(255,55,48,.65)}
+.n{position:relative;width:50%}.n.l{align-self:flex-start;padding-right:40px;text-align:right}.n.r{align-self:flex-end;padding-left:40px}
+.n::before{content:"";position:absolute;top:50%;width:6px;height:2px;margin-top:-1px;background:#54202c}.n.l::before{right:0;width:40px}.n.r::before{left:0;width:40px}.n.done::before{background:#ff5b48}
+.dot{position:absolute;top:50%;width:20px;height:20px;margin-top:-10px;background:#170811;border:3px solid #692234;border-radius:50%;box-shadow:0 0 0 4px rgba(255,54,57,.04)}
+.n.l .dot{right:-10px}.n.r .dot{left:-10px}.n.done .dot{background:#ff473c;border-color:#ffd1bd;box-shadow:0 0 16px rgba(255,60,51,.6)}
+.card{display:inline-block;max-width:100%;padding:14px 17px;background:linear-gradient(135deg,rgba(44,12,25,.95),rgba(23,7,17,.95));border:1px solid #52202e;border-radius:9px;box-shadow:0 7px 20px rgba(0,0,0,.15)}
+.card h3{font-size:19px;color:#f9e7e4}.card small{opacity:.7}.n.done .card{border-color:#a83440;box-shadow:0 0 18px rgba(255,43,54,.07)}.n.todo .card{border-style:dashed;border-color:#b85b66}.n.empty .card{border-style:dotted;opacity:.42}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px;opacity:.85}.legend span::before{content:"";display:inline-block;width:12px;height:12px;margin-right:7px;background:#ff473c;border-radius:3px}.legend span:nth-child(2)::before{background:none;border:1px dashed #ff9b90}.legend span:nth-child(3)::before{background:none;border:1px dotted #c9a8ae}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.tier{padding:24px;border:1px solid rgba(255,106,91,.4);border-radius:13px;background:linear-gradient(145deg,rgba(40,10,23,.85),rgba(16,5,13,.9));display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.tier.main{background:radial-gradient(ellipse at 90% 0%,rgba(255,63,55,.22),transparent 55%),linear-gradient(145deg,#32101f,#170710);border-color:#ff6657;box-shadow:0 0 30px rgba(255,44,52,.1)}.tier h3{font-size:24px;color:#ffe5de}.tier p{margin:0;color:#d8bfc2}.card-num{font:700 clamp(20px,5vw,28px) 'Pixelify Sans',monospace;letter-spacing:.06em;overflow-wrap:anywhere;color:#ffb29f}.tier .btn{font-size:15px;padding:12px 14px;margin-top:auto}
+footer{padding:34px 0;background:rgba(7,3,8,.88);border-top:1px solid rgba(255,72,65,.25);text-align:center;font-size:14px;color:#c5a9b0}footer a{margin:0 10px;text-decoration:none}footer a:hover{color:#ff8c79}
+::selection{background:#ff493f;color:#fff}
+@media (max-width:700px){nav .wrap{flex-wrap:wrap;padding-top:10px;padding-bottom:10px}.links{order:3;width:100%;display:flex;justify-content:center;gap:14px}.links a{margin:0;font-size:14px}.lang button{padding:6px 7px}.trunk,.fill{left:16px;margin-left:0}.n,.n.l,.n.r{width:100%;align-self:stretch;text-align:left;padding:0 12px 0 56px}.n.l::before,.n.r::before{left:20px;right:auto;width:36px}.n.l .dot,.n.r .dot{left:7px;right:auto}.hero{padding-top:78px}.hero::before{width:110vw;right:-40%;top:-20%}.card{padding:12px}.segs{gap:3px}.segs i{height:11px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* EMBERCRYPT: two living realms — cosmic blue/violet above, rising ember below */
+#realmCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none;background:#070817}
+.world-vignette{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 35%,transparent 15%,rgba(3,3,14,.22) 65%,rgba(3,2,10,.76) 100%);mix-blend-mode:multiply}
+.scroll-meter{position:fixed;right:10px;top:50%;height:130px;width:3px;transform:translateY(-50%);z-index:20;background:rgba(255,255,255,.1);border-radius:9px;overflow:hidden}.scroll-meter i{display:block;width:100%;height:0;background:linear-gradient(#8d8bff,#ff5647,#ffb05a);box-shadow:0 0 12px #ff5549}
+nav{background:rgba(7,7,22,.66);backdrop-filter:blur(22px);border-bottom:1px solid rgba(160,151,255,.2);box-shadow:0 12px 50px rgba(0,0,0,.22);transition:background .5s,border-color .5s}
+nav b{font-size:25px;letter-spacing:.08em;background:linear-gradient(90deg,#c6c7ff,#fff,#ffad8c);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.links a{color:#d3d1ff}.links a:hover{color:#ffb19c;text-shadow:0 0 16px #ff5549}
+.lang button{border-radius:999px;background:rgba(20,20,48,.7);border-color:rgba(167,162,255,.4)}.lang button[aria-pressed=true]{background:linear-gradient(120deg,#5651bd,#8d50ba,#db3e55);border-color:#d5caff;box-shadow:0 0 22px #7552d766}
+.hero{min-height:min(860px,calc(100svh - 68px));display:flex;align-items:center;padding:clamp(70px,10vw,130px) 0 100px;border:0;isolation:isolate;background:linear-gradient(180deg,rgba(8,8,28,.05),rgba(8,6,23,.12) 62%,rgba(12,4,16,.75));}
+.hero::before{width:min(78vw,800px);right:-10%;top:-25%;background:radial-gradient(circle at 35% 35%,rgba(189,178,255,.22),rgba(103,75,220,.14) 15%,rgba(42,54,155,.1) 38%,transparent 68%);box-shadow:0 0 160px rgba(99,92,255,.17);filter:blur(1px);animation:cosmicBreath 12s ease-in-out infinite alternate}
+.hero::after{content:"";top:auto;bottom:0;left:0;right:0;height:180px;letter-spacing:0;white-space:normal;background:linear-gradient(0deg,rgba(255,45,41,.17),transparent);clip-path:polygon(0 75%,8% 68%,17% 84%,25% 62%,34% 75%,43% 56%,53% 77%,63% 61%,72% 83%,82% 55%,91% 72%,100% 49%,100% 100%,0 100%);animation:heatWave 6s ease-in-out infinite alternate}
+@keyframes cosmicBreath{from{transform:scale(.9) rotate(-6deg);opacity:.5}to{transform:scale(1.12) rotate(7deg);opacity:1}}
+@keyframes heatWave{from{transform:translateY(8px);opacity:.55}to{transform:translateY(-7px);opacity:1}}
+.hero-content{position:relative;z-index:1}.eyebrow{display:flex;align-items:center;gap:12px;color:#bfc0ff;font:700 12px 'Pixelify Sans',monospace;letter-spacing:.23em;margin-bottom:25px}.pulse-dot{width:7px;height:7px;border-radius:50%;background:#9a8fff;box-shadow:0 0 15px #8d7aff;animation:dotPulse 2s infinite}.eyebrow-line{height:1px;width:60px;background:linear-gradient(90deg,#a7a1ff,transparent)}@keyframes dotPulse{50%{opacity:.35;transform:scale(.7)}}
+.hero h1{display:flex;flex-direction:column;gap:4px;margin-bottom:25px;text-shadow:none;max-width:100%}.title-small{font:700 clamp(12px,2vw,17px) 'Pixelify Sans',monospace;letter-spacing:.4em;color:#9a9cff;text-shadow:0 0 24px #6762ff66}.title-main{font-size:clamp(56px,12vw,130px);letter-spacing:-.045em;line-height:.98;background:linear-gradient(115deg,#f7f5ff 3%,#aaaaff 25%,#e3c5ff 43%,#ffb19c 65%,#ff584b 82%,#ffce9b 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:titleFlow 8s ease-in-out infinite;text-shadow:none;filter:drop-shadow(0 0 28px rgba(113,99,255,.24))}.title-sub{font:700 clamp(10px,1.6vw,14px) 'Pixelify Sans',monospace;letter-spacing:.25em;color:#ffb7a1;margin-top:18px}@keyframes titleFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero p{max-width:52ch;color:#dedcff;font-size:clamp(18px,2.2vw,22px);text-shadow:0 2px 15px #090819;margin-bottom:32px}.badges{gap:12px}.badge{border:1px solid rgba(169,164,255,.55);background:linear-gradient(120deg,rgba(40,43,111,.48),rgba(61,22,70,.3));color:#dedbff;border-radius:999px;backdrop-filter:blur(10px);box-shadow:inset 0 0 22px rgba(120,111,255,.07),0 0 20px rgba(90,82,255,.08)}
+.btn{border-radius:999px;padding:15px 24px;background:linear-gradient(110deg,#4f48bf,#7960d8,#c34784,#ff4c46,#d42d3b,#6e45bf);background-size:300% 300%;border:1px solid rgba(255,225,236,.6);box-shadow:0 0 0 4px rgba(143,102,255,.08),0 10px 35px rgba(191,44,96,.23),inset 0 1px 0 #ffffff40;animation:buttonFlow 7s ease-in-out infinite;color:white}.btn:hover{box-shadow:0 0 32px rgba(255,71,84,.42),0 0 40px rgba(110,84,255,.22),inset 0 1px 0 #ffffff60}
+.hero-orbit{position:absolute;pointer-events:none;border:1px solid rgba(170,161,255,.22);border-radius:50%;width:min(72vw,760px);aspect-ratio:1;right:-10%;top:50%;transform:translateY(-50%) rotate(-28deg);box-shadow:inset 0 0 80px rgba(97,83,255,.04),0 0 55px rgba(107,84,255,.05)}.orbit-two{width:min(55vw,560px);right:-2%;border-color:rgba(255,130,153,.15);transform:translateY(-50%) rotate(38deg) scaleY(.42)}.hero-rune{position:absolute;right:15%;top:22%;font-size:clamp(35px,7vw,90px);color:#c4bdff;opacity:.55;text-shadow:0 0 28px #8275ff;animation:runeFloat 8s ease-in-out infinite}.orbit-one:after,.orbit-two:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;top:17%;left:19%;background:#e0d8ff;box-shadow:0 0 20px 5px #8e80ff;}
+@keyframes runeFloat{0%,100%{transform:translateY(0) rotate(0deg);opacity:.35}50%{transform:translateY(-18px) rotate(18deg);opacity:.8}}
+.realm-section{position:relative;isolation:isolate;overflow:hidden;padding:clamp(70px,9vw,120px) 0;background:transparent;border:0}.realm-section:before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.8}.cosmos-section:before{background:linear-gradient(180deg,rgba(16,14,53,.5),rgba(21,13,54,.26) 70%,transparent)}.collision-section:before{background:linear-gradient(180deg,rgba(35,12,61,.22),rgba(72,16,55,.25),rgba(93,19,41,.32))}.ember-section:before{background:linear-gradient(180deg,rgba(88,17,42,.28),rgba(75,10,27,.55) 55%,rgba(30,5,15,.7))}.support-section:before{background:linear-gradient(180deg,rgba(39,8,28,.8),rgba(13,6,20,.85))}.news-section:before{background:linear-gradient(180deg,rgba(13,7,25,.5),rgba(9,5,17,.88))}
+.section-mark{position:absolute;top:22px;left:max(22px,calc((100vw - 1080px)/2 + 22px));font:700 12px 'Pixelify Sans',monospace;letter-spacing:.24em;color:#aaa4ff;text-shadow:0 0 18px #7b6aff55}.section-mark span{color:#ff9b9d;letter-spacing:.16em}.cosmos-section .section-mark{color:#aaa8ff}.ember-section .section-mark,.support-section .section-mark{color:#ff795f}
+section h2{font-size:clamp(34px,6vw,58px);letter-spacing:-.025em;color:#fff;text-shadow:0 0 28px rgba(130,111,255,.28)}.ember-section h2,.support-section h2,.news-section h2{ text-shadow:0 0 28px rgba(255,58,57,.24)}.sub{color:#d3d1ef;opacity:1;font-size:clamp(16px,2vw,18px)}
+.video{border-radius:18px;border:1px solid rgba(175,163,255,.6);box-shadow:0 0 0 1px #ff766122,0 0 60px rgba(96,69,255,.17),0 25px 80px rgba(0,0,0,.5);background:#080718}.video:before{content:"GAMEPLAY FEED // REALM ACCESS";position:absolute;top:0;left:0;z-index:1;padding:8px 13px;background:rgba(8,7,24,.8);border-bottom-right-radius:10px;color:#d2ceff;font:700 10px 'Pixelify Sans',monospace;letter-spacing:.15em;pointer-events:none}
+.vp{background:linear-gradient(180deg,rgba(18,17,55,.82),rgba(48,12,38,.88),rgba(19,5,18,.95));border:1px solid rgba(255,107,104,.45);box-shadow:inset 0 0 70px rgba(255,43,57,.07),0 18px 60px rgba(0,0,0,.22)}.trunk{background:linear-gradient(#7e78f5,#bd54b5,#ff604a)}.fill{background:linear-gradient(180deg,#a5a0ff,#dc69be,#ff5945,#ffb05d);box-shadow:0 0 18px #ff5d6a}.card{background:linear-gradient(135deg,rgba(36,32,83,.82),rgba(42,10,37,.92));border-color:rgba(174,157,255,.42);backdrop-filter:blur(8px)}.n.done .card{border-color:#ff6a78;box-shadow:0 0 24px rgba(255,61,84,.13)}.n.todo .card{border-color:#c276b7}.dot{background:#171332;border-color:#8174dd}.n.done .dot{background:#ff6657;border-color:#ffe0d5;box-shadow:0 0 20px #ff594f}.count{color:#ffb1b8}.segs i{background:#1b1739;border-color:#39315f}.segs i.on{background:linear-gradient(90deg,#7169ed,#d45eb7,#ff5a4d);border-color:#ffc0bd;box-shadow:0 0 14px #d548a955}
+.tier{border-color:rgba(164,151,255,.35);background:linear-gradient(145deg,rgba(32,26,72,.76),rgba(24,7,28,.87));backdrop-filter:blur(12px);box-shadow:0 20px 55px rgba(0,0,0,.22)}.tier.main{background:radial-gradient(ellipse at 90% 0%,rgba(255,69,72,.23),transparent 55%),linear-gradient(145deg,rgba(59,24,71,.96),rgba(26,8,30,.96));border-color:#ff7a86;box-shadow:0 0 45px rgba(255,55,81,.12)}.card-num{color:#ffb5b8}.tier p{color:#d7c9ed}footer{background:rgba(5,4,15,.8);border-top:1px solid rgba(158,145,255,.22);backdrop-filter:blur(16px)}
+@media(max-width:700px){.hero{min-height:calc(92svh - 60px);padding:78px 0 110px}.hero-rune{right:9%;top:14%}.orbit-one{width:110vw;right:-40%}.orbit-two{width:95vw;right:-22%}.title-main{font-size:clamp(48px,13vw,82px)}.title-small{letter-spacing:.23em}.title-sub{letter-spacing:.12em}.eyebrow{letter-spacing:.12em}.section-mark{left:22px}.scroll-meter{right:4px;height:85px}}
+@media(prefers-reduced-motion:reduce){#realmCanvas{display:none}.hero-orbit,.hero-rune{animation:none!important}}
+
+/* Keep the progress tree inside normal page flow so it never traps page scrolling. */
+.vp{height:auto;max-height:none;overflow:visible;overscroll-behavior:auto;touch-action:auto}
+.tree{padding:22px 0;gap:12px}
+.n .card{padding:10px 13px}
+.n .card h3{font-size:clamp(14px,2.2vw,18px)}
+@media(max-width:700px){.tree{padding:16px 0;gap:9px}.n,.n.l,.n.r{padding-top:0;padding-bottom:0}.n .card{padding:9px 11px}.n .card h3{font-size:15px}}
+
+</style>
+<link rel="icon" type="image/png" sizes="256x256" href="/favicon.png?v=2">
+<link rel="shortcut icon" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/favicon.png?v=2">
+</head>
+<body>
+<canvas id="realmCanvas" aria-hidden="true"></canvas><div class="world-vignette" aria-hidden="true"></div><div class="scroll-meter" aria-hidden="true"><i id="scrollMeterFill"></i></div>
+<nav><div class="wrap"><b>Embercrypt</b>
+<div class="links"><a href="#about" data-i="nAbout"></a><a href="#goals" data-i="nGoals"></a><a href="#support" data-i="nSupport"></a></div>
+<div class="lang" role="group" aria-label="Language"><button data-l="uk">UK</button><button data-l="ru">RU</button><button data-l="en">EN</button></div></div></nav>
+
+<header class="hero"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><div class="hero-rune">✦</div><div class="wrap hero-content"><div class="eyebrow"><span class="pulse-dot"></span> A PIXEL ART ACTION RPG <span class="eyebrow-line"></span></div>
+<h1><span class="title-small">THE REALM BETWEEN</span><span class="title-main">Embercrypt</span><span class="title-sub">✦ STARS ABOVE. EMBERS BELOW. ✦</span></h1>
+<p data-i="tag"></p>
+<div class="badges"><span class="badge">Google Play</span><span class="badge">Steam</span><span class="badge" data-i="soon"></span></div>
+<a class="btn" href="#support" data-i="cta"></a>
+</div></header>
+
+<section id="about" class="realm-section cosmos-section"><div class="section-mark">I <span> / THE COSMOS</span></div><div class="wrap">
+<h2 data-i="aboutH"></h2>
+<p class="sub" data-i="aboutP"></p>
+</div></section>
+
+<section id="video" class="realm-section collision-section alt"><div class="section-mark">II <span> / THE DESCENT</span></div><div class="wrap">
+<h2 data-i="vidH"></h2>
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/Z08EXirFlF8" title="Gameplay" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<p style="margin:18px 0 0"><a class="btn" href="https://youtu.be/Z08EXirFlF8" target="_blank" rel="noopener" data-i="vidB"></a></p>
+</div></section>
+
+<section id="goals" class="realm-section ember-section"><div class="section-mark">III <span> / THE EMBER REALM</span></div><div class="wrap">
+<h2 data-i="goalsH"></h2>
+<p class="sub" data-i="goalsP"></p>
+<div class="count"><span data-i="locs"></span> 4 / 12</div>
+<div class="segs" id="segs"></div>
+<div class="vp" id="vp" tabindex="0" aria-label="Progress tree"><div class="tree" id="tree"><div class="trunk"></div><div class="fill" id="fill"></div></div></div>
+<div class="legend"><span data-i="lDone"></span><span data-i="lTodo"></span><span data-i="lEmpty"></span></div>
+</div></section>
+
+<section id="support" class="realm-section support-section alt"><div class="section-mark">IV <span> / THE OFFERING</span></div><div class="wrap">
+<h2 data-i="supH"></h2>
+<p class="sub" data-i="supP"></p>
+<div class="tiers">
+<div class="tier main"><h3 data-i="monoH"></h3><div class="card-num" id="cn">4874 0700 1231 9479</div><button class="btn" id="copy" data-i="copy"></button></div>
+<div class="tier"><h3>DonationAlerts</h3><p data-i="daP"></p><a class="btn" href="https://www.donationalerts.com/r/nightsergio" target="_blank" rel="noopener" data-i="daB"></a></div>
+</div>
+</div></section>
+
+<section class="realm-section news-section"><div class="section-mark">V <span> / TRANSMISSIONS</span></div><div class="wrap">
+<h2 data-i="newsH"></h2>
+<p class="sub" data-i="newsP"></p>
+<a class="btn" href="https://t.me/nightsergionews" target="_blank" rel="noopener">Telegram</a>
+<a class="btn" style="margin-left:10px" href="https://www.tiktok.com/@nightsergio" target="_blank" rel="noopener">TikTok</a>
+</div></section>
+
+<footer><div class="wrap">© 2026 nightsergio ·
+<a href="https://t.me/nightsergionews" target="_blank" rel="noopener">Telegram</a>
+<a href="https://www.tiktok.com/@nightsergio" target="_blank" rel="noopener">TikTok</a></div></footer>
+
+<script>
+var T={
+uk:{nAbout:"Про гру",nGoals:"Цілі",nSupport:"Підтримка",tag:"Піксельна dungeon RPG. Небезпечні підземелля, легендарна зброя та боси, що чекають у темряві.",soon:"Скоро",cta:"Підтримати гру",aboutH:"Про гру",aboutP:"Embercrypt — це піксельна dungeon RPG про небезпечні підземелля, рідкісну зброю, могутніх босів і таємничі локації. Кожен поверх приховує нові випробування, а за темрявою мерехтить жаринка пригод.",vidH:"Геймплей",vidB:"Дивитись на YouTube",goalsH:"Дерево прогресу",goalsP:"Це мапа розробки. Жовтим залите все, що вже зроблено. Прокручуй сторінку вниз, щоб побачити всі етапи.",locs:"Локації:",lDone:"Готово",lTodo:"У планах",lEmpty:"Ще без цілі",supH:"Підтримати гру",supP:"Усі гроші спрямовуються на розробку: нові локації, зброю й озвучення.",monoH:"Картка monobank",copy:"Скопіювати номер",copied:"Скопійовано",daP:"Донат з будь-якої країни.",daB:"Відкрити DonationAlerts",newsH:"Новини",newsP:"Усі новини розробки виходять у Telegram. Відео з гри дивись у TikTok."},
+ru:{nAbout:"Об игре",nGoals:"Цели",nSupport:"Поддержка",tag:"Пиксельная dungeon RPG. Опасные подземелья, легендарное оружие и боссы, скрывающиеся во тьме.",soon:"Скоро",cta:"Поддержать игру",aboutH:"Об игре",aboutP:"Embercrypt — пиксельная dungeon RPG об опасных подземельях, редком оружии, могучих боссах и таинственных локациях. Каждый этаж скрывает новые испытания, а во тьме мерцает искра приключения.",vidH:"Геймплей",vidB:"Смотреть на YouTube",goalsH:"Дерево прогресса",goalsP:"Это карта разработки. Жёлтым залито всё, что уже сделано. Прокручивай страницу вниз, чтобы увидеть все этапы.",locs:"Локации:",lDone:"Готово",lTodo:"В планах",lEmpty:"Пока без цели",supH:"Поддержать игру",supP:"Все деньги идут на разработку: новые локации, оружие и озвучку.",monoH:"Карта monobank",copy:"Скопировать номер",copied:"Скопировано",daP:"Донат из любой страны.",daB:"Открыть DonationAlerts",newsH:"Новости",newsP:"Все новости разработки выходят в Telegram. Видео из игры смотри в TikTok."},
+en:{nAbout:"About",nGoals:"Goals",nSupport:"Support",tag:"A pixel-art dungeon RPG of dangerous depths, legendary weapons, and mighty bosses.",soon:"Coming soon",cta:"Support the game",aboutH:"About the game",aboutP:"Embercrypt is a pixel-art dungeon RPG of dangerous depths, rare weapons, mighty bosses, and mysterious realms. Every floor hides a new trial, and a dying ember lights the way into the dark.",vidH:"Gameplay",vidB:"Watch on YouTube",goalsH:"Progress tree",goalsP:"This is the development map. Everything already done is filled in. Scroll down the page to see every stage.",locs:"Locations:",lDone:"Done",lTodo:"Planned",lEmpty:"No goal yet",supH:"Support the game",supP:"Every donation goes into development: new locations, weapons and sound.",monoH:"monobank card",copy:"Copy number",copied:"Copied",daP:"Donate from any country.",daB:"Open DonationAlerts",newsH:"News",newsP:"All development news is posted on Telegram. Watch gameplay clips on TikTok."}
+};
+function L(n){return["Локація "+n,"Локация "+n,"Location "+n]}
+var nodes=[
+{k:"done",t:["Початок розробки","Начало разработки","Development begins"]},
+{k:"done",t:["Перша локація","Первая локация","First location"]},
+{k:"done",t:["Перший бос","Первый босс","First boss"]},
+{k:"done",t:["Перші 4 локації","Первые 4 локации","First 4 locations"]},
+{k:"done",t:["Додано 30 зброї","Добавлено 30 видов оружия","30 weapons added"]},
+{k:"todo",t:L(5)},{k:"todo",t:L(6)},{k:"todo",t:L(7)},{k:"todo",t:L(8)},
+{k:"todo",t:L(9)},{k:"todo",t:L(10)},{k:"todo",t:L(11)},{k:"todo",t:L(12)},
+{k:"empty"},{k:"empty"},{k:"empty"}
+];
+var lang="uk";
+try{lang=localStorage.getItem("lang")||""}catch(e){}
+if(!T[lang]){var p=(navigator.languages&&navigator.languages[0]||navigator.language||"en").toLowerCase();lang=p.indexOf("uk")==0?"uk":p.indexOf("ru")==0?"ru":"en"}
+var ix={uk:0,ru:1,en:2};
+function render(){
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=T[lang][e.dataset.i]});
+ document.querySelectorAll("[data-l]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.l==lang)});
+ document.querySelectorAll(".n").forEach(function(e){e.remove()});
+ var tree=document.getElementById("tree");
+ nodes.forEach(function(n,i){
+  var d=document.createElement("div");d.className="n "+n.k+" "+(i%2?"l":"r");
+  d.innerHTML='<span class="dot"></span><div class="card"><h3>'+(n.t?n.t[ix[lang]]:"???")+'</h3></div>';
+  tree.appendChild(d);
+ });
+ fillTree();
+}
+function fillTree(){
+ var tree=document.getElementById("tree"),all=tree.querySelectorAll(".n.done"),last=all[all.length-1];
+ if(last)document.getElementById("fill").style.height=(tree.offsetHeight-(last.offsetTop+last.offsetHeight/2))+"px";
+}
+var s=document.getElementById("segs");
+for(var i=0;i<12;i++){var e=document.createElement("i");if(i<4)e.className="on";s.appendChild(e)}
+document.querySelectorAll("[data-l]").forEach(function(b){b.onclick=function(){lang=b.dataset.l;try{localStorage.setItem("lang",lang)}catch(e){}render()}});
+document.getElementById("copy").onclick=function(){
+ var b=this,num="4874070012319479";
+ function ok(){b.textContent=T[lang].copied;setTimeout(function(){b.textContent=T[lang].copy},1800)}
+ try{navigator.clipboard.writeText(num).then(ok)}catch(e){var r=document.createRange();r.selectNodeContents(document.getElementById("cn"));var sel=getSelection();sel.removeAllRanges();sel.addRange(r)}
+};
+render();
+var vp=document.getElementById("vp");vp.scrollTop=vp.scrollHeight;
+window.addEventListener("resize",fillTree);
+
+// Living background: scroll from blue-violet cosmos into rising red embers.
+(function(){
+ const canvas=document.getElementById('realmCanvas'); if(!canvas)return;
+ const ctx=canvas.getContext('2d'); if(!ctx)return;
+ let w=0,h=0,dpr=1,stars=[],embers=[],last=0,heat=0,targetHeat=0;
+ const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function resize(){dpr=Math.min(window.devicePixelRatio||1,1.7);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);stars=Array.from({length:Math.min(180,Math.floor(w*h/6500))},()=>({x:Math.random()*w,y:Math.random()*h,z:.35+Math.random()*1.6,r:.35+Math.random()*1.35,a:.25+Math.random()*.7,phase:Math.random()*6.28,hue:Math.random()}));embers=Array.from({length:Math.min(100,Math.floor(w*h/11000))},()=>newEmber(true));}
+ function newEmber(initial){return{x:Math.random()*w,y:initial?Math.random()*h:h+Math.random()*80,v:.4+Math.random()*1.7,r:.7+Math.random()*2.2,a:.25+Math.random()*.7,sway:Math.random()*6.28}}
+ function lerp(a,b,t){return a+(b-a)*t} function col(a,b,t){return [0,1,2].map(i=>Math.round(lerp(a[i],b[i],t)))}
+ function draw(ts){if(reduce)return;let dt=Math.min(2,(ts-last||16)/16);last=ts;heat+=(targetHeat-heat)*.025;
+  const top=[7,9,30],mid=[36,15,62],hot=[79,12,32],bottom=[18,4,17];let t=heat;
+  let base=t<.58?col(top,mid,t/.58):col(mid,hot,(t-.58)/.42);
+  let g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,`rgb(${col(top,base,.2).join(',')})`);g.addColorStop(.48,`rgb(${base.join(',')})`);g.addColorStop(1,`rgb(${col(base,bottom,Math.min(1,t*.9)).join(',')})`);ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  // Slow drifting nebula clouds; scroll shifts the balance from indigo to molten scarlet.
+  const time=ts*.000025;for(let i=0;i<5;i++){let x=w*(.18+i*.19)+Math.sin(time+i*2)*w*.11;let y=h*(.15+(i%3)*.32)+Math.cos(time*1.4+i)*h*.09;let rad=Math.max(w,h)*(.18+(i%2)*.1);let emberMix=Math.max(0,Math.min(1,(t-.18)*1.55));let rr=lerp(70,255,emberMix),gg=lerp(70,37,emberMix),bb=lerp(220,54,emberMix);let rg=ctx.createRadialGradient(x,y,0,x,y,rad);rg.addColorStop(0,`rgba(${rr|0},${gg|0},${bb|0},${.075+emberMix*.065})`);rg.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=rg;ctx.fillRect(0,0,w,h);}
+  // Stars drift sideways and gently twinkle; below, they fade into sparks.
+  for(const s of stars){s.y+=s.z*(.16+t*.65)*dt;s.x+=Math.sin(ts*.0002+s.phase)*.12*dt;if(s.y>h+4){s.y=-4;s.x=Math.random()*w}if(s.x<0)s.x=w;if(s.x>w)s.x=0;let tw=s.a*(.58+.42*Math.sin(ts*.0015+s.phase));let fade=Math.max(.08,1-t*.85);ctx.globalAlpha=tw*fade;ctx.fillStyle=s.hue>.78&&t>.35?'#ffc0bc':(s.hue>.5?'#d8d4ff':'#ffffff');ctx.fillRect(s.x,s.y,s.r,s.r);if(s.z>1.5&&s.hue>.7){ctx.globalAlpha=tw*.25;ctx.fillRect(s.x-3,s.y,s.r+6,1)}}ctx.globalAlpha=1;
+  // Embers rise from the bottom; their density and glow increase as the page descends.
+  const active=Math.floor(embers.length*(.08+t*1.15));for(let i=0;i<embers.length;i++){let e=embers[i];if(i>=active)continue;e.y-=e.v*(.7+t*2.8)*dt;e.x+=Math.sin(ts*.001+e.sway)*(.25+t*.7)*dt;e.sway+=.009*dt;if(e.y<-12){embers[i]=newEmber(false);continue}let alpha=e.a*(.28+t*.8)*Math.min(1,(h-e.y)/120);ctx.globalAlpha=Math.min(.95,alpha);ctx.fillStyle=Math.random()>.86?'#ffe1a1':(Math.random()>.48?'#ff6b48':'#f52e42');ctx.shadowBlur=5+t*14;ctx.shadowColor='#ff3b38';ctx.beginPath();ctx.arc(e.x,e.y,e.r*(.6+t*.55),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}ctx.globalAlpha=1;
+  // Low horizon of molten light gradually grows near the bottom of the page.
+  if(t>.12){let intensity=Math.min(1,(t-.12)*1.5);let hg=ctx.createLinearGradient(0,h*.55,0,h);hg.addColorStop(0,'rgba(255,37,48,0)');hg.addColorStop(.7,`rgba(180,16,48,${intensity*.05})`);hg.addColorStop(1,`rgba(255,53,30,${intensity*.18})`);ctx.fillStyle=hg;ctx.fillRect(0,0,w,h)}
+  requestAnimationFrame(draw)
+ }
+ function scroll(){let max=Math.max(1,document.documentElement.scrollHeight-innerHeight);targetHeat=Math.max(0,Math.min(1,scrollY/max));let meter=document.getElementById('scrollMeterFill');if(meter)meter.style.height=(targetHeat*100)+'%';document.documentElement.style.setProperty('--scroll-heat',targetHeat.toFixed(3));}
+ addEventListener('resize',resize,{passive:true});addEventListener('scroll',scroll,{passive:true});resize();scroll();if(!reduce)requestAnimationFrame(draw);else{ctx.fillStyle='#08091c';ctx.fillRect(0,0,w,h)}
+})();
+
+</script>
+</body>
+</html>
